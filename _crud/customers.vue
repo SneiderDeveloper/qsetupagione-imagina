@@ -2,8 +2,8 @@
     <modalContract />
 </template>
 <script>
-import qSetupStore from '@imagina/qsetupagione/_store/qSetupStore.js';
-import modalContract from '@imagina/qsetupagione/_components/modal/index.vue';
+import qSetupStore from '../_store/qSetupStore.js';
+import modalContract from '../_components/modal/index.vue';
 
 export default {
   components:{
@@ -195,15 +195,15 @@ export default {
             },
           },
           airlineId: {
-            value: "",
-            type: "select",
+            value: null,
+            type: 'crud',
             props: {
-              label: "Airline",
-            },
-            loadOptions: {
-              apiRoute: "apiRoutes.qsetupagione.airlines",
-              select: { label: "airlineName", id: "id" },
-              requestParams: { refresh: true },
+              crudType: 'select',
+              crudData: import('src/modules/qfly/_crud/airline'),
+              crudProps: {
+                label: 'Airline',
+              },
+              config: {options: {label: 'airlineName', value: 'id'}},
             },
           },
           adHocWorkOrders: {

@@ -8,7 +8,7 @@ export default {
         //permission: 'setup.stations.manage',
         crudId: this.$uid(),
         //entityName: config("main.qsetupagione.entityNames.stations"),
-        apiRoute: "apiRoutes.qsetupagione.setupStations",
+        apiRoute: "apiRoutes.qsetupagione.gates",
         read: {
           columns: [
             {
@@ -18,22 +18,16 @@ export default {
               style: "width: 50px",
             },
             {
-              name: "stationName",
+              name: "name",
+              label: "Name",
+              field: "name",
+              align: "left",
+            },
+            {
+              name: "StationName",
               label: "Station Name",
-              field: "stationName",
-              align: "left",
-            },
-            {
-              name: "stationCode",
-              label: "Station Code",
-              field: "stationCode",
-              align: "left",
-            },
-            {
-              name: "airportName",
-              label: "Airport Name",
-              field: "airport",
-              format: val => val ? val.airportName: '',
+              field: "station",
+              format: val => val ? val.stationName : '' ,
               align: "left",
             },
             {
@@ -42,59 +36,44 @@ export default {
               align: "left",
             },
           ],
-          requestParams: {include: 'airport'},
+          requestParams: {include: 'station'},
         },
         create: {
-          title: 'Create station'
+          title: 'Create Parking Spot'
         },
         update: {
-          title: 'Update companies'
+          title: 'Update Parking Spot'
         },
         delete: true,
         formLeft: {
           id: {
             value: null,
           },
-          stationName: {
-            name:'stationName',
+          name: {
+            name:'name',
             value: '',
             type: 'input',
             props: {
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
-              label: 'Station Name',
+              label: 'Name',
               clearable: true,
               color:"primary",
               'hide-bottom-space': false
             },
-            label: 'Station Name',
+            label: 'Name',
           },
-          stationCode: {
-            name:'stationCode',
-            value: '',
-            type: 'input',
-            props: {
-              rules: [
-                val => !!val || this.$tr('isite.cms.message.fieldRequired')
-              ],
-              label: 'Station Code',
-              clearable: true,
-              color:"primary",
-              'hide-bottom-space': false
-            },
-            label: 'Station Code',
-          },
-          airportId: {
+          stationId: {
             value: null,
             type: 'crud',
             props: {
               crudType: 'select',
-              crudData: import('../../qfly/_crud/airport'),
+              crudData: import('../_crud/stations'),
               crudProps: {
-                label: 'Airport Name',
+                label: 'Station Name',
               },
-              config: {options: {label: 'airportName', value: 'id'}},
+              config: {options: {label: 'stationName', value: 'id'}},
             },
           },
         },
