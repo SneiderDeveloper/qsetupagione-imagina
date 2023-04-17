@@ -88,7 +88,7 @@ export default {
               color:"primary"
             },
             loadOptions: {
-              apiRoute: 'apiRoutes.qramp.setupStations',
+              apiRoute: 'apiRoutes.qsetupagione.setupStations',
               select: {label: 'stationName', id: 'id'},
             },
           }
